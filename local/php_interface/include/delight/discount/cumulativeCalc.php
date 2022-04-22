@@ -71,8 +71,8 @@ class CumulativeCalc extends \CSaleCondCtrlComplex
                 'ID'         => 'DelightCumulativeDiscount',
                 'FIELD'      => 'ID',
                 'FIELD_TYPE' => 'int',
-                'LABEL'      => 'Сумма оплаченных заказов + сумма текущего заказа',
-                'PREFIX'     => 'Сумма оплаченных заказов + сумма текущего заказа',
+                'LABEL'      => 'Сумма выполненных заказов + сумма текущего заказа',
+                'PREFIX'     => 'Сумма выполненных заказов + сумма текущего заказа',
                 'LOGIC'      => static::GetLogic(array(BT_COND_LOGIC_EGR)),
                 'JS_VALUE'   => array(
                     'type' => 'input'
