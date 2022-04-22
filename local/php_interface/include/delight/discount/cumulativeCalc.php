@@ -180,7 +180,16 @@ class CumulativeCalc extends \CSaleCondCtrlComplex
     {
         if ($arOrder["USER_ID"] > 0) {
             $ordersSum  = self::getOrdersSum(array("STATUS_ID" => "F", "USER_ID" => $arOrder["USER_ID"], "=LID" => $arOrder["SITE_ID"], "=CANCELED" => "N"));
-            $valueField = $ordersSum + $arOrder["ORDER_PRICE"];
+            
+            $currentOrderSum = 0;
+            // Не учитываем акционные товары при расчёте накопительной скидки на текущий заказ
+            foreach($arOrder["BASKET_ITEMS"] as $basketItem){
+                if($basketItem["PRICE"] == $basketItem["BASE_PRICE"]){
+                    $currentOrderSum += $basketItem["PRICE"];
+                }
+            }
+            
+            $valueField = $ordersSum + $currentOrderSum;
             if ($valueField >= $CondVal) {
                 return true;
             }
